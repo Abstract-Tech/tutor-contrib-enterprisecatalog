@@ -1,4 +1,4 @@
-enterprisecatalog plugin for `Tutor <https://docs.tutor.overhang.io>`__
+Enterprise catalog plugin for `Tutor <https://docs.tutor.overhang.io>`__
 ===================================================================================
 
 Installation
@@ -6,7 +6,7 @@ Installation
 
 ::
 
-    pip install git+https://github.com/Dicey-Tech/tutor-contrib-enterprisecatalog
+    pip install git+https://github.com/Abstract-Tech/tutor-contrib-enterprisecatalog
 
 Usage
 -----
@@ -16,6 +16,7 @@ Usage
     tutor plugins enable enterprisecatalog
 
     Had to set user as staff and superuser using mysql
+
 License
 -------
 
