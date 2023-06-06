@@ -6,6 +6,8 @@ from .__about__ import __version__
 
 from tutor import hooks as tutor_hooks
 
+templates = pkg_resources.resource_filename("tutorenterprisecatalog", "templates")
+
 # Add the "templates" folder as a template root
 tutor_hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
     pkg_resources.resource_filename("tutorenterprisecatalog", "templates")
