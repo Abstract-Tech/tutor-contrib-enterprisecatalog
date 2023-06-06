@@ -23,7 +23,3 @@ LOGGING = get_logger_config(
     dev_env=True,
     debug=False,
 )
-
-
-
-
