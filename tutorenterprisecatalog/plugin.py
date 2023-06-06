@@ -4,7 +4,12 @@ import pkg_resources
 
 from .__about__ import __version__
 
-templates = pkg_resources.resource_filename("tutorenterprisecatalog", "templates")
+from tutor import hooks as tutor_hooks
+
+# Add the "templates" folder as a template root
+tutor_hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
+    pkg_resources.resource_filename("tutorenterprisecatalog", "templates")
+)
 
 config = {
     "add": {
@@ -33,7 +38,7 @@ hooks = {
         "enterprisecatalog": "{{ ENTERPRISECATALOG_DOCKER_IMAGE }}",
         "enterprisecatalog-worker": "{{ ENTERPRISECATALOG_WORKER_DOCKER_IMAGE }}",
     },
-    "init": ["mysql", "enterprisecatalog", "lms"],
+    "init": ["mysql", "lms", "enterprisecatalog"],
 }
 
 
