@@ -5,19 +5,16 @@ enterprisecatalog:
   volumes:
     - ../plugins/enterprisecatalog/apps/settings/tutor:/openedx/enterprise-catalog/enterprise_catalog/settings/tutor:ro
   restart: unless-stopped
-  depends_on: 
+  depends_on:
     - enterprisecatalog-worker
     {% if RUN_MYSQL %}- mysql{% endif %}
 
 enterprisecatalog-worker:
-  image: openedx-enterprise-catalog-worker
-  build:
-    context: ../plugins/enterprisecatalog/build/enterprisecatalog
-    target: openedx-enterprise-catalog-worker
+  image: {{ ENTERPRISECATALOG_DOCKER_IMAGE }}
   environment:
     DJANGO_SETTINGS_MODULE: enterprise_catalog.settings.tutor.celery_production
   restart: unless-stopped
   volumes:
     - ../plugins/enterprisecatalog/apps/settings/tutor:/openedx/enterprise-catalog/enterprise_catalog/settings/tutor:ro
-  {% if RUN_MYSQL %}depends_on: 
+  {% if RUN_MYSQL %}depends_on:
     - mysql{% endif %}

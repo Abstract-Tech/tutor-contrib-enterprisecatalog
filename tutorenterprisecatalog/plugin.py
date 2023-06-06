@@ -38,7 +38,6 @@ config = {
 hooks = {
     "build-image": {
         "enterprisecatalog": "{{ ENTERPRISECATALOG_DOCKER_IMAGE }}",
-        "enterprisecatalog-worker": "{{ ENTERPRISECATALOG_WORKER_DOCKER_IMAGE }}",
     },
     "init": ["mysql", "lms", "enterprisecatalog"],
 }
