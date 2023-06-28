@@ -47,6 +47,24 @@ hooks = {
 =======
 >>>>>>> f6e2e3d (fix: use hooks v2 for init tasks)
 }
+tutor_hooks.Filters.IMAGES_BUILD.add_items(
+    [
+        (
+            "enterprisecatalog",
+            ("plugins", "enterprisecatalog", "build", "enterprisecatalog"),
+            "{{ ENTERPRISECATALOG_DOCKER_IMAGE }}",
+            (),
+        ),
+        (
+            "enterprisecatalog-worker",
+            ("plugins", "enterprisecatalog", "build", "enterprisecatalog-worker"),
+            "{{ ENTERPRISECATALOG_WORKER_DOCKER_IMAGE }}",
+            (),
+        ),
+
+    ]
+)
+
 
 MY_INIT_TASKS: list[tuple[str, tuple[str, ...]]] = [
      ("lms", ("enterprisecatalog", "hooks", "lms", "init")),
