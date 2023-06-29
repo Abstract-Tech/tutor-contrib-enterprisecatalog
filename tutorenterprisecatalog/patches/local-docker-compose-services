@@ -11,6 +11,9 @@ enterprisecatalog:
 
 enterprisecatalog-worker:
   image: {{ ENTERPRISECATALOG_DOCKER_IMAGE }}
+  build:
+    context: ../plugins/enterprisecatalog/build/enterprisecatalog
+    target: openedx-enterprise-catalog-worker
   environment:
     DJANGO_SETTINGS_MODULE: enterprise_catalog.settings.tutor.celery_production
   restart: unless-stopped
