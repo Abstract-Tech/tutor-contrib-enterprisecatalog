@@ -58,9 +58,9 @@ tutor_hooks.Filters.IMAGES_BUILD.add_items(
 
 
 MY_INIT_TASKS: list[tuple[str, tuple[str, ...]]] = [
-     ("lms", ("enterprisecatalog", "hooks", "lms", "init")),
-     ("enterprisecatalog", ("enterprisecatalog", "hooks", "enterprisecatalog", "init")),
-     ("mysql", ("enterprisecatalog", "hooks", "mysql", "init")),
+    ("mysql", ("enterprisecatalog", "hooks", "mysql", "init")),
+    ("lms", ("enterprisecatalog", "hooks", "lms", "init")),
+    ("enterprisecatalog", ("enterprisecatalog", "hooks", "enterprisecatalog", "init")),
 ]
 
 
