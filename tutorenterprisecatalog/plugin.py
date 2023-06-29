@@ -46,13 +46,6 @@ tutor_hooks.Filters.IMAGES_BUILD.add_items(
             "{{ ENTERPRISECATALOG_DOCKER_IMAGE }}",
             (),
         ),
-        (
-            "enterprisecatalog-worker",
-            ("plugins", "enterprisecatalog", "build", "enterprisecatalog-worker"),
-            "{{ ENTERPRISECATALOG_DOCKER_IMAGE }}",
-            (),
-        ),
-
     ]
 )
 
