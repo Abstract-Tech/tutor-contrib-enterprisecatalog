@@ -38,15 +38,6 @@ config = {
     },
 }
 
-hooks = {
-    "build-image": {
-        "enterprisecatalog": "{{ ENTERPRISECATALOG_DOCKER_IMAGE }}",
-    },
-<<<<<<< HEAD
-    "init": ["mysql", "lms", "enterprisecatalog"],
-=======
->>>>>>> f6e2e3d (fix: use hooks v2 for init tasks)
-}
 tutor_hooks.Filters.IMAGES_BUILD.add_items(
     [
         (
@@ -58,7 +49,7 @@ tutor_hooks.Filters.IMAGES_BUILD.add_items(
         (
             "enterprisecatalog-worker",
             ("plugins", "enterprisecatalog", "build", "enterprisecatalog-worker"),
-            "{{ ENTERPRISECATALOG_WORKER_DOCKER_IMAGE }}",
+            "{{ ENTERPRISECATALOG_DOCKER_IMAGE }}",
             (),
         ),
 
