@@ -1,6 +1,9 @@
+from __future__ import annotations
+
 from glob import glob
 import os
 import pkg_resources
+from tutor import hooks as tutor_hooks
 
 from .__about__ import __version__
 
@@ -35,12 +38,32 @@ config = {
     },
 }
 
-hooks = {
-    "build-image": {
-        "enterprisecatalog": "{{ ENTERPRISECATALOG_DOCKER_IMAGE }}",
-    },
-    "init": ["mysql", "lms", "enterprisecatalog"],
-}
+tutor_hooks.Filters.IMAGES_BUILD.add_items(
+    [
+        (
+            "enterprisecatalog",
+            ("plugins", "enterprisecatalog", "build", "enterprisecatalog"),
+            "{{ ENTERPRISECATALOG_DOCKER_IMAGE }}",
+            (),
+        ),
+    ]
+)
+
+
+MY_INIT_TASKS: list[tuple[str, tuple[str, ...]]] = [
+    ("mysql", ("enterprisecatalog", "hooks", "mysql", "init")),
+    ("lms", ("enterprisecatalog", "hooks", "lms", "init")),
+    ("enterprisecatalog", ("enterprisecatalog", "hooks", "enterprisecatalog", "init")),
+]
+
+
+for service, template_path in MY_INIT_TASKS:
+    full_path: str = pkg_resources.resource_filename(
+        "tutorenterprisecatalog", os.path.join("templates", *template_path)
+    )
+    with open(full_path, encoding="utf-8") as init_task_file:
+        init_task: str = init_task_file.read()
+    tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item((service, init_task))
 
 
 def patches():
